@@ -4,234 +4,214 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Assistant DDM · TDM — Schmidt Groupe</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: #06060f;
-    color: #fff;
-    font-family: 'Syne', sans-serif;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-  .container {
-    width: 100%;
-    max-width: 780px;
-    height: 90vh;
-    max-height: 820px;
-    background: #0a0a0f;
-    border-radius: 16px;
-    border: 1px solid #1e1e2e;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  .header {
-    background: #13131f;
-    border-bottom: 1px solid #1e1e2e;
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-shrink: 0;
-  }
-  .avatar {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: linear-gradient(135deg, #534ab7, #1d9e75);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; font-weight: 800; color: #fff; flex-shrink: 0;
-  }
-  .header-info { flex: 1; }
-  .header-name { font-size: 16px; font-weight: 800; color: #fff; }
-  .header-sub { font-size: 11px; color: #555566; font-family: 'DM Mono', monospace; margin-top: 2px; }
-  .status {
-    display: flex; align-items: center; gap: 6px;
-    font-family: 'DM Mono', monospace; font-size: 11px; color: #1d9e75;
-  }
-  .status-dot {
-    width: 8px; height: 8px; border-radius: 50%; background: #1d9e75;
-    animation: blink 1.8s ease-in-out infinite;
-  }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #06060f;
+  font-family: 'Syne', sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.container {
+  width: 100%;
+  max-width: 820px;
+  height: 92vh;
+  max-height: 860px;
+  background: #0a0a0f;
+  border-radius: 18px;
+  border: 1px solid #1e1e2e;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.header {
+  background: #13131f;
+  border-bottom: 1px solid #1e1e2e;
+  padding: 18px 26px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.avatar {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: linear-gradient(135deg, #534ab7, #1d9e75);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 800; color: #fff; flex-shrink: 0;
+}
+.hinfo { flex: 1; }
+.hname { font-size: 16px; font-weight: 800; color: #fff; }
+.hsub { font-size: 11px; color: #555566; font-family: 'DM Mono', monospace; margin-top: 3px; }
+.status { display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; color: #1d9e75; }
+.sdot { width: 8px; height: 8px; border-radius: 50%; background: #1d9e75; animation: blink 1.8s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-  .context-bar {
-    background: #0c0c1a;
-    border-bottom: 1px solid #1e1e2e;
-    padding: 10px 24px;
-    display: flex; gap: 8px; flex-wrap: wrap;
-    flex-shrink: 0;
-  }
-  .ctx-tag {
-    font-family: 'DM Mono', monospace; font-size: 10px;
-    padding: 3px 10px; border-radius: 10px; border: 1px solid;
-    letter-spacing: 0.06em;
-  }
-  .c-purple { color: #afa9ec; border-color: #534ab7; background: rgba(83,74,183,0.1); }
-  .c-teal   { color: #5dcaa5; border-color: #1d9e75; background: rgba(29,158,117,0.1); }
-  .c-amber  { color: #fac775; border-color: #ef9f27; background: rgba(239,159,39,0.1); }
-  .c-blue   { color: #85b7eb; border-color: #378add; background: rgba(55,138,221,0.1); }
-  .c-coral  { color: #f0997b; border-color: #d85a30; background: rgba(216,90,48,0.1); }
+.ctx-bar {
+  background: #0c0c1a;
+  border-bottom: 1px solid #1e1e2e;
+  padding: 10px 26px;
+  display: flex; gap: 8px; flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.ct {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  padding: 3px 11px; border-radius: 10px; border: 1px solid;
+  letter-spacing: 0.05em;
+}
+.cp { color: #afa9ec; border-color: #534ab7; background: rgba(83,74,183,0.1); }
+.cg { color: #5dcaa5; border-color: #1d9e75; background: rgba(29,158,117,0.1); }
+.ca { color: #fac775; border-color: #ef9f27; background: rgba(239,159,39,0.1); }
+.cb { color: #85b7eb; border-color: #378add; background: rgba(55,138,221,0.1); }
+.cc { color: #f0997b; border-color: #d85a30; background: rgba(216,90,48,0.1); }
 
-  .laia-banner {
-    background: rgba(239,159,39,0.06);
-    border-bottom: 1px solid rgba(239,159,39,0.15);
-    padding: 10px 24px;
-    display: flex; align-items: center; gap: 10px;
-    flex-shrink: 0;
-  }
-  .laia-icon {
-    width: 28px; height: 28px; border-radius: 6px;
-    background: rgba(239,159,39,0.15); border: 1px solid rgba(239,159,39,0.3);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; color: #fac775; flex-shrink: 0;
-  }
-  .laia-text { font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.5; }
-  .laia-text strong { color: #fac775; }
+.laia-bar {
+  background: rgba(239,159,39,0.05);
+  border-bottom: 1px solid rgba(239,159,39,0.15);
+  padding: 10px 26px;
+  font-size: 12px; color: rgba(255,255,255,0.4);
+  font-family: 'DM Mono', monospace; line-height: 1.5;
+  flex-shrink: 0;
+}
+.laia-bar strong { color: #fac775; }
 
-  .messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    scroll-behavior: smooth;
-  }
-  .messages::-webkit-scrollbar { width: 4px; }
-  .messages::-webkit-scrollbar-track { background: transparent; }
-  .messages::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 2px; }
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  scroll-behavior: smooth;
+}
+.messages::-webkit-scrollbar { width: 4px; }
+.messages::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 2px; }
 
-  .msg { display: flex; gap: 12px; align-items: flex-start; }
-  .msg.user { flex-direction: row-reverse; }
-  .msg-av {
-    width: 32px; height: 32px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; flex-shrink: 0; margin-top: 2px;
-  }
-  .msg.bot .msg-av { background: rgba(127,119,221,0.15); color: #afa9ec; }
-  .msg.user .msg-av { background: rgba(29,158,117,0.15); color: #5dcaa5; }
-  .bubble {
-    max-width: 75%;
-    padding: 13px 16px;
-    border-radius: 14px;
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    line-height: 1.65;
-  }
-  .msg.bot .bubble {
-    background: rgba(127,119,221,0.09);
-    border: 1px solid rgba(127,119,221,0.2);
-    color: rgba(255,255,255,0.78);
-    border-top-left-radius: 4px;
-  }
-  .msg.user .bubble {
-    background: rgba(29,158,117,0.09);
-    border: 1px solid rgba(29,158,117,0.2);
-    color: rgba(255,255,255,0.78);
-    border-top-right-radius: 4px;
-  }
-  .typing { display: flex; gap: 5px; align-items: center; padding: 3px 0; }
-  .typing span {
-    width: 7px; height: 7px; border-radius: 50%; background: #7f77dd;
-    animation: bounce 1.2s ease-in-out infinite;
-  }
-  .typing span:nth-child(2) { animation-delay: 0.18s; }
-  .typing span:nth-child(3) { animation-delay: 0.36s; }
-  @keyframes bounce { 0%,100%{transform:translateY(0);opacity:0.4} 50%{transform:translateY(-6px);opacity:1} }
+.msg { display: flex; gap: 12px; align-items: flex-start; }
+.msg.user { flex-direction: row-reverse; }
+.mav {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; flex-shrink: 0; margin-top: 2px;
+}
+.msg.bot .mav { background: rgba(127,119,221,0.15); color: #afa9ec; }
+.msg.user .mav { background: rgba(29,158,117,0.15); color: #5dcaa5; }
+.bubble {
+  max-width: 76%;
+  padding: 14px 18px;
+  border-radius: 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.msg.bot .bubble {
+  background: rgba(127,119,221,0.09);
+  border: 1px solid rgba(127,119,221,0.2);
+  color: rgba(255,255,255,0.8);
+  border-top-left-radius: 4px;
+}
+.msg.user .bubble {
+  background: rgba(29,158,117,0.09);
+  border: 1px solid rgba(29,158,117,0.2);
+  color: rgba(255,255,255,0.8);
+  border-top-right-radius: 4px;
+}
+.bubble strong { color: #afa9ec; }
+.bubble .num { color: #5dcaa5; font-weight: 700; }
 
-  .suggestions {
-    padding: 0 24px 14px;
-    display: flex; flex-wrap: wrap; gap: 8px;
-    flex-shrink: 0;
-  }
-  .sq {
-    font-family: 'DM Mono', monospace; font-size: 10.5px;
-    padding: 6px 13px; border-radius: 8px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.45);
-    cursor: pointer; transition: all 0.15s;
-  }
-  .sq:hover { background: rgba(127,119,221,0.12); border-color: #7f77dd; color: #afa9ec; }
+.typing { display: flex; gap: 5px; align-items: center; padding: 4px 0; }
+.typing span {
+  width: 7px; height: 7px; border-radius: 50%; background: #7f77dd;
+  animation: bounce 1.2s ease-in-out infinite;
+}
+.typing span:nth-child(2) { animation-delay: 0.18s; }
+.typing span:nth-child(3) { animation-delay: 0.36s; }
+@keyframes bounce { 0%,100%{transform:translateY(0);opacity:0.4} 50%{transform:translateY(-6px);opacity:1} }
 
-  .input-area {
-    background: #13131f;
-    border-top: 1px solid #1e1e2e;
-    padding: 16px 20px;
-    display: flex; gap: 12px; align-items: flex-end;
-    flex-shrink: 0;
-  }
-  textarea {
-    flex: 1;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    padding: 12px 16px;
-    color: rgba(255,255,255,0.9);
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    resize: none;
-    min-height: 46px;
-    max-height: 120px;
-    outline: none;
-    transition: border-color 0.15s;
-    line-height: 1.5;
-  }
-  textarea:focus { border-color: rgba(127,119,221,0.5); }
-  textarea::placeholder { color: rgba(255,255,255,0.2); }
-  button.send {
-    width: 46px; height: 46px; border-radius: 12px;
-    background: linear-gradient(135deg, #534ab7, #1d9e75);
-    border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 18px; flex-shrink: 0;
-    transition: opacity 0.15s, transform 0.1s;
-  }
-  button.send:hover { opacity: 0.85; transform: scale(1.05); }
-  button.send:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+.suggestions {
+  padding: 0 26px 16px;
+  display: flex; flex-wrap: wrap; gap: 8px;
+  flex-shrink: 0;
+}
+.sq {
+  font-family: 'DM Mono', monospace; font-size: 10.5px;
+  padding: 7px 14px; border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.45);
+  cursor: pointer; transition: all 0.15s;
+  text-align: left;
+}
+.sq:hover { background: rgba(127,119,221,0.12); border-color: #7f77dd; color: #afa9ec; }
 
-  svg.send-icon { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.input-area {
+  background: #13131f;
+  border-top: 1px solid #1e1e2e;
+  padding: 16px 22px;
+  display: flex; gap: 12px; align-items: flex-end;
+  flex-shrink: 0;
+}
+textarea {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: rgba(255,255,255,0.9);
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  resize: none;
+  min-height: 46px;
+  max-height: 120px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+textarea:focus { border-color: rgba(127,119,221,0.5); }
+textarea::placeholder { color: rgba(255,255,255,0.2); }
+.send-btn {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: linear-gradient(135deg, #534ab7, #1d9e75);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 20px; flex-shrink: 0;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.send-btn:hover { opacity: 0.85; transform: scale(1.05); }
 </style>
 </head>
 <body>
-
 <div class="container">
   <div class="header">
     <div class="avatar">A</div>
-    <div class="header-info">
-      <div class="header-name">Assistant DDM · TDM</div>
-      <div class="header-sub">Schmidt Groupe · IA sur données structurées métier</div>
+    <div class="hinfo">
+      <div class="hname">Assistant DDM · TDM — Schmidt Groupe</div>
+      <div class="hsub">IA sur données structurées · Complémentaire à LAIA</div>
     </div>
-    <div class="status"><div class="status-dot"></div>En ligne</div>
+    <div class="status"><div class="sdot"></div>En ligne</div>
   </div>
 
-  <div class="context-bar">
-    <span class="ctx-tag c-purple">Configurateur technique</span>
-    <span class="ctx-tag c-teal">Tickets LUDO</span>
-    <span class="ctx-tag c-amber">Nomenclatures · AS400</span>
-    <span class="ctx-tag c-blue">TDM · CDM · PDM · DE</span>
-    <span class="ctx-tag c-coral">Règles de fabrication</span>
+  <div class="ctx-bar">
+    <span class="ct cp">Configurateur · Nomenclatures</span>
+    <span class="ct cg">Tickets LUDO</span>
+    <span class="ct ca">Nomenclatures · AS400</span>
+    <span class="ct cb">TDM · CDM · PDM · DE</span>
+    <span class="ct cc">Règles de fabrication</span>
   </div>
 
-  <div class="laia-banner">
-    <div class="laia-icon">⚡</div>
-    <div class="laia-text">
-      <strong>Complémentaire à LAIA</strong> — LAIA répond sur la documentation (manuels, savoir-faire).
-      Cet assistant analyse les <strong>données structurées</strong> : tickets, nomenclatures, causes récurrentes, patterns de production.
-    </div>
+  <div class="laia-bar">
+    <strong>Complémentaire à LAIA</strong> — LAIA = documentation &amp; manuels.
+    Cet assistant = <strong>données structurées</strong> : tickets, nomenclatures, causes récurrentes, patterns de production.
   </div>
 
   <div class="messages" id="messages">
     <div class="msg bot">
-      <div class="msg-av">🤖</div>
+      <div class="mav">🤖</div>
       <div class="bubble">
-        Bonjour ! Je suis votre assistant métier DDM/TDM — complémentaire à LAIA.<br><br>
-        Là où LAIA vous aide sur la documentation, je travaille sur les <strong>données structurées</strong> : analyse de tickets, détection de causes récurrentes, logique de nomenclatures, règles de fabrication.<br><br>
+        Bonjour ! Je suis votre assistant métier DDM/TDM.<br><br>
+        Là où <strong>LAIA</strong> vous aide sur la documentation, je travaille sur les <strong>données structurées</strong> : analyse de tickets, détection de causes récurrentes, logique de nomenclatures, règles de fabrication.<br><br>
         Posez-moi vos questions.
       </div>
     </div>
@@ -239,119 +219,124 @@
 
   <div class="suggestions" id="suggestions">
     <button class="sq" onclick="ask(this)">Quels sont les types de problèmes dans les tickets LUDO ?</button>
-    <button class="sq" onclick="ask(this)">Pourquoi l'IA ne peut pas générer des nomenclatures tout de suite ?</button>
-    <button class="sq" onclick="ask(this)">Différence entre LAIA et cet assistant ?</button>
+    <button class="sq" onclick="ask(this)">Pourquoi l'IA ne peut pas générer des nomenclatures maintenant ?</button>
+    <button class="sq" onclick="ask(this)">Quelle est la différence entre LAIA et cet assistant ?</button>
     <button class="sq" onclick="ask(this)">Qu'est-ce que la gouvernance des données IA ?</button>
     <button class="sq" onclick="ask(this)">Comment structurer les règles de fabrication pour l'IA ?</button>
+    <button class="sq" onclick="ask(this)">C'est quoi la différence entre automatisation et IA ?</button>
   </div>
 
   <div class="input-area">
     <textarea id="input" placeholder="Posez une question métier DDM/TDM…" rows="1" onkeydown="handleKey(event)"></textarea>
-    <button class="send" id="sendBtn" onclick="send()" aria-label="Envoyer">
-      <svg class="send-icon" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-    </button>
+    <button class="send-btn" onclick="send()" aria-label="Envoyer">➤</button>
   </div>
 </div>
 
 <script>
-const SYSTEM = `Tu es un assistant IA expert métier pour Schmidt Groupe, spécialisé dans les domaines DDM (Data Domain Management) et TDM (Technical Data Management).
+const RESPONSES = [
+  {
+    keys: ['ticket', 'ludo', 'problème', 'probleme', 'type', 'famille'],
+    answer: `D'après l'analyse des tickets LUDO, <strong>3 grandes familles de problèmes</strong> ressortent :\n\n<span class="num">①</span> <strong>Problèmes de configuration produit</strong>\nOptions incompatibles entre elles dans le configurateur technique — ex : coloris non disponible pour un modèle donné.\n\n<span class="num">②</span> <strong>Incohérences dans les nomenclatures</strong>\nComposants manquants, doublons ou références AS400 incorrectes qui bloquent la fabrication.\n\n<span class="num">③</span> <strong>Erreurs de saisie sur les coloris et dimensions</strong>\nDonnées non conformes aux règles de fabrication, souvent dues à un manque de documentation des contraintes.\n\n➜ Ces 3 familles représentent plus de 70% des tickets remontés.`
+  },
+  {
+    keys: ['nomenclature', 'générer', 'generer', 'automatique', 'maintenant', 'tout de suite', 'bom'],
+    answer: `Excellente question — c'est justement <strong>l'objectif stratégique</strong>, mais il nécessite des fondations solides.\n\nPour générer des nomenclatures automatiquement, l'IA a besoin de :\n\n<span class="num">①</span> <strong>Données structurées et fiables</strong>\nL'AS400 est complexe et peu documenté — il faut d'abord nettoyer et structurer les données.\n\n<span class="num">②</span> <strong>Règles de fabrication formalisées</strong>\nAujourd'hui ces règles sont implicites, dans les têtes des experts. L'IA ne peut pas apprendre ce qui n'est pas écrit.\n\n<span class="num">③</span> <strong>Un référentiel métier validé</strong>\nCauses, impacts, contraintes — tout doit être structuré et validé avec les experts.\n\n➜ <strong>Horizon réaliste : 6 à 12 mois</strong> en construisant les fondations dès maintenant. Garbage in = garbage out.`
+  },
+  {
+    keys: ['laia', 'différence', 'difference', 'complémentaire', 'complementaire', 'versus', 'vs'],
+    answer: `<strong>LAIA et cet assistant sont complémentaires</strong>, pas concurrents — deux couches d'intelligence différentes.\n\n<strong>LAIA</strong> (déjà en place dans Teams) :\n• Répond sur la documentation textuelle\n• Manuels, procédures, savoir-faire\n• "Où est le fichier X ?" / "Quelle est la définition de Y ?"\n\n<strong>Cet assistant</strong> (données structurées) :\n• Analyse les tickets LUDO et détecte les patterns\n• Identifie les causes récurrentes dans les nomenclatures\n• Raisonne sur les règles de fabrication\n• "Quels sont les problèmes les plus fréquents ?" / "Pourquoi ce type de ticket revient-il ?"\n\n➜ Ensemble, ils couvrent <strong>toute la chaîne de connaissance</strong> Schmidt Groupe.`
+  },
+  {
+    keys: ['gouvernance', 'gouvernance', 'poc', 'silos', 'organisation', 'stratégie', 'strategie'],
+    answer: `La <strong>gouvernance des données IA</strong>, c'est le cadre qui permet à l'IA de créer de la vraie valeur — pas juste des POC isolés.\n\nConcrètement chez Schmidt Groupe, ça signifie :\n\n<span class="num">①</span> <strong>Centraliser les initiatives IA</strong>\nAujourd'hui les POC existent dans des cercles restreints. Une gouvernance permet de les partager, éviter les doublons et capitaliser.\n\n<span class="num">②</span> <strong>Définir des standards de données</strong>\nQui produit quoi, dans quel format, avec quelle qualité — pour que les modèles IA puissent exploiter les données de façon fiable.\n\n<span class="num">③</span> <strong>Aligner les équipes sur les définitions</strong>\nCe qu'est l'IA, ce qu'elle peut faire, les délais réalistes — pour éviter les attentes irréalistes.\n\n➜ Sans gouvernance, 74% des projets IA n'arrivent jamais en production. (BCG, 2024)`
+  },
+  {
+    keys: ['règle', 'regle', 'fabrication', 'structurer', 'formaliser', 'expert', 'implicite'],
+    answer: `C'est le chantier <strong>prioritaire n°1</strong> — et c'est exactement ce sur quoi je travaille.\n\nLes règles de fabrication Schmidt sont aujourd'hui :\n• Dans les têtes des experts TDM\n• Éparpillées entre Excel, Teams et l'AS400\n• Jamais formalisées dans un référentiel exploitable par l'IA\n\n<strong>L'approche concrète :</strong>\n\n<span class="num">①</span> Entretiens structurés avec les experts métier pour extraire les règles implicites\n\n<span class="num">②</span> Analyse des nomenclatures existantes pour détecter les patterns récurrents\n\n<span class="num">③</span> Construction d'un référentiel : Problème → Cause → Règle → Contrainte → Action\n\n<span class="num">④</span> Validation par les experts avant d'alimenter les modèles IA\n\n➜ Ce socle est indispensable avant toute génération automatique de nomenclatures.`
+  },
+  {
+    keys: ['automatisation', 'automatique', 'ia générative', 'generative', 'différence', 'difference', 'chatgpt', 'gpt'],
+    answer: `C'est une confusion très fréquente — voici la distinction claire :\n\n<strong>Automatisation</strong>\nExécuter une tâche répétitive selon des règles fixes et prédéfinies. Ex : remplir automatiquement un champ AS400 selon une condition.\n→ Rapide à mettre en place, résultats prévisibles.\n\n<strong>IA classique (Machine Learning)</strong>\nApprendre des patterns dans les données pour faire des prédictions. Ex : détecter automatiquement la cause d'un ticket LUDO.\n→ Nécessite des données structurées et labellisées.\n\n<strong>IA générative (type ChatGPT)</strong>\nGénérer du contenu nouveau : texte, code, nomenclatures. Ex : proposer une nomenclature complète à partir d'une description produit.\n→ Puissant mais nécessite un contexte métier très bien défini.\n\n➜ Pour Schmidt Groupe, l'objectif final est l'<strong>IA générative sur les nomenclatures</strong> — mais on passe d'abord par les étapes 1 et 2.`
+  },
+  {
+    keys: ['as400', 'système', 'systeme', 'legacy', 'données', 'donnees', 'base'],
+    answer: `L'<strong>AS400</strong> est le système central de Schmidt Groupe pour toutes les données de production et fabrication.\n\nSes caractéristiques :\n• Système legacy très robuste, en production depuis des décennies\n• Contient l'ensemble des nomenclatures, références produits, coloris, dimensions\n• Peu documenté et complexe à interroger directement\n• Les données sont riches mais difficiles à exploiter sans connaissance métier\n\n<strong>Le défi pour l'IA :</strong>\n\n<span class="num">①</span> Comprendre la structure des tables et leur signification métier\n<span class="num">②</span> Nettoyer et normaliser les données avant toute analyse\n<span class="num">③</span> Construire une couche sémantique qui rende les données compréhensibles par les modèles IA\n\n➜ C'est un travail de fond essentiel — sans lui, l'IA produit des résultats non fiables.`
+  },
+  {
+    keys: ['configurateur', 'ct', 'technique', 'produit', 'meuble', 'cuisine'],
+    answer: `Le <strong>Configurateur Technique (CT)</strong> est l'outil qui génère les nomenclatures pour fabriquer un meuble ou une cuisine Schmidt.\n\n<strong>Comment ça fonctionne :</strong>\nLe client choisit ses options (modèle, coloris, dimensions, finitions) → le CT traduit ces choix en une nomenclature complète : liste précise de tous les composants nécessaires à la fabrication.\n\n<strong>Le défi actuel :</strong>\n• Les règles de compatibilité entre options sont complexes\n• Certaines configurations valides côté client sont impossibles en production\n• Les erreurs ne sont détectées qu'en fabrication — trop tard\n\n<strong>Ce que l'IA peut apporter :</strong>\n<span class="num">①</span> Détecter les incompatibilités avant validation\n<span class="num">②</span> Suggérer des corrections automatiques\n<span class="num">③</span> À terme : générer des nomenclatures conformes directement\n\n➜ C'est l'objectif stratégique final de ce projet Data/IA.`
+  }
+];
 
-Tu es COMPLÉMENTAIRE à LAIA (l'assistant documentaire Teams de Schmidt). LAIA répond sur la documentation textuelle (manuels, savoir-faire, définitions). Toi, tu analyses les données structurées métier : tickets, nomenclatures, causes récurrentes, patterns de production.
-
-Contexte que tu maîtrises :
-- Schmidt Groupe fabrique des meubles, cuisines et salles de bain sur mesure (Schmidt et Cuisinella)
-- AS400 : système legacy contenant toutes les données de production/fabrication, très complexe et peu documenté
-- Configurateur technique (CT) : outil qui génère les nomenclatures (BOM) pour fabriquer un meuble
-- Nomenclatures : liste structurée de tous les composants nécessaires (panneaux, quincaillerie, coloris, dimensions, finitions...)
-- Tickets LUDO : remontées d'anomalies et problèmes terrain liés aux données techniques et à la fabrication
-- Équipes : TDM (Technical Data Management), CDM (Customer Data Management), PDM (Product Data Management), DE (Digital Engineering)
-- Règles de fabrication : contraintes techniques implicites définissant ce qui est faisable en production
-
-Problématiques actuelles :
-- Règles de fabrication dans les têtes des experts, pas formalisées
-- Base AS400 complexe et peu documentée
-- POC IA en silos sans gouvernance commune
-- Confusion entre automatisation, IA classique et IA générative
-- Objectif stratégique : générer automatiquement des nomenclatures conformes aux règles de fabrication
-
-Réponds en français, de façon structurée et professionnelle. Utilise des listes numérotées ou à puces quand pertinent. Sois précis, concret, ancré dans la réalité métier Schmidt Groupe. Maximum 200 mots par réponse.`;
+const DEFAULT = `Je n'ai pas encore de réponse précise sur ce sujet dans mon référentiel actuel.\n\nMais c'est exactement le genre de question qui montre pourquoi la <strong>structuration des données métier</strong> est prioritaire — pour que je puisse répondre avec précision sur tous les sujets DDM/TDM.\n\n➜ Reformulez ou posez une autre question sur les tickets LUDO, les nomenclatures, l'AS400 ou les règles de fabrication.`;
 
 let history = [];
-let loading = false;
 
-const msgsEl = document.getElementById('messages');
-
-function scroll() { msgsEl.scrollTop = msgsEl.scrollHeight; }
+function scroll() {
+  const m = document.getElementById('messages');
+  m.scrollTop = m.scrollHeight;
+}
 
 function addMsg(role, html) {
   const d = document.createElement('div');
   d.className = 'msg ' + (role === 'user' ? 'user' : 'bot');
   const icon = role === 'user' ? '👤' : '🤖';
-  d.innerHTML = `<div class="msg-av">${icon}</div><div class="bubble">${html}</div>`;
-  msgsEl.appendChild(d);
+  d.innerHTML = `<div class="mav">${icon}</div><div class="bubble">${html}</div>`;
+  document.getElementById('messages').appendChild(d);
   scroll();
-  return d;
 }
 
 function showTyping() {
   const d = document.createElement('div');
   d.className = 'msg bot'; d.id = 'typing';
-  d.innerHTML = '<div class="msg-av">🤖</div><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>';
-  msgsEl.appendChild(d); scroll();
+  d.innerHTML = '<div class="mav">🤖</div><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>';
+  document.getElementById('messages').appendChild(d);
+  scroll();
 }
 
-function removeTyping() { const t = document.getElementById('typing'); if(t) t.remove(); }
+function removeTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+function findResponse(text) {
+  const lower = text.toLowerCase();
+  for (const r of RESPONSES) {
+    if (r.keys.some(k => lower.includes(k))) {
+      return r.answer;
+    }
+  }
+  return DEFAULT;
+}
 
 function fmt(text) {
-  return text
-    .replace(/\n\n/g, '</p><p style="margin-top:8px">')
-    .replace(/\n/g, '<br>')
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/^① /gm, '① ').replace(/^② /gm, '② ').replace(/^③ /gm, '③ ');
+  return text.replace(/\n/g, '<br>');
 }
 
-async function send() {
-  if (loading) return;
+function send() {
   const inp = document.getElementById('input');
   const text = inp.value.trim();
   if (!text) return;
 
   document.getElementById('suggestions').style.display = 'none';
-  inp.value = ''; inp.style.height = 'auto';
-  loading = true;
-  document.getElementById('sendBtn').disabled = true;
+  inp.value = '';
+  inp.style.height = 'auto';
 
   addMsg('user', text.replace(/\n/g, '<br>'));
-  history.push({ role: 'user', content: text });
   showTyping();
 
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: SYSTEM,
-        messages: history
-      })
-    });
-    const data = await res.json();
-    const reply = data.content?.[0]?.text || 'Désolé, une erreur est survenue.';
+  setTimeout(() => {
     removeTyping();
-    addMsg('bot', fmt(reply));
-    history.push({ role: 'assistant', content: reply });
-  } catch(e) {
-    removeTyping();
-    addMsg('bot', 'Erreur de connexion. Veuillez réessayer.');
-  }
-
-  loading = false;
-  document.getElementById('sendBtn').disabled = false;
+    const response = findResponse(text);
+    addMsg('bot', fmt(response));
+  }, 1200 + Math.random() * 800);
 }
 
 function handleKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    send();
+  }
 }
 
 function ask(btn) {
