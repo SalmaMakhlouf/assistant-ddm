@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Assistant DDM · TDM — Schmidt Groupe</title>
+<title>Assistant IA TDM — Schmidt Groupe</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -13,7 +13,7 @@ body { background: #06060f; font-family: 'Syne', sans-serif; height: 100vh; disp
 .avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #534ab7, #1d9e75); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; color: #fff; flex-shrink: 0; }
 .hinfo { flex: 1; }
 .hname { font-size: 15px; font-weight: 800; color: #fff; }
-.hsub { font-size: 10px; color: #555566; font-family: 'DM Mono', monospace; margin-top: 2px; }
+.hsub { font-size: 10px; color: #777789; font-family: 'DM Mono', monospace; margin-top: 2px; }
 .status { display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 10px; color: #1d9e75; }
 .sdot { width: 7px; height: 7px; border-radius: 50%; background: #1d9e75; animation: blink 1.8s infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
@@ -24,7 +24,7 @@ body { background: #06060f; font-family: 'Syne', sans-serif; height: 100vh; disp
 .ca { color: #fac775; border-color: #ef9f27; background: rgba(239,159,39,0.1); }
 .cb { color: #85b7eb; border-color: #378add; background: rgba(55,138,221,0.1); }
 .cc { color: #f0997b; border-color: #d85a30; background: rgba(216,90,48,0.1); }
-.laia-bar { background: rgba(239,159,39,0.05); border-bottom: 1px solid rgba(239,159,39,0.15); padding: 9px 24px; font-size: 11px; color: rgba(255,255,255,0.4); font-family: 'DM Mono', monospace; flex-shrink: 0; }
+.laia-bar { background: rgba(239,159,39,0.05); border-bottom: 1px solid rgba(239,159,39,0.15); padding: 9px 24px; font-size: 11px; color: rgba(255,255,255,0.55); font-family: 'DM Mono', monospace; flex-shrink: 0; }
 .laia-bar strong { color: #fac775; }
 .messages { flex: 1; overflow-y: auto; padding: 22px; display: flex; flex-direction: column; gap: 16px; }
 .messages::-webkit-scrollbar { width: 3px; }
@@ -35,12 +35,13 @@ body { background: #06060f; font-family: 'Syne', sans-serif; height: 100vh; disp
 .msg.bot .mav { background: rgba(127,119,221,0.15); color: #afa9ec; }
 .msg.user .mav { background: rgba(29,158,117,0.15); color: #5dcaa5; }
 .bubble { max-width: 78%; padding: 12px 16px; border-radius: 14px; font-family: 'DM Mono', monospace; font-size: 12.5px; line-height: 1.75; }
-.msg.bot .bubble { background: rgba(127,119,221,0.09); border: 1px solid rgba(127,119,221,0.2); color: rgba(255,255,255,0.8); border-top-left-radius: 3px; }
-.msg.user .bubble { background: rgba(29,158,117,0.09); border: 1px solid rgba(29,158,117,0.2); color: rgba(255,255,255,0.8); border-top-right-radius: 3px; }
+.msg.bot .bubble { background: rgba(127,119,221,0.09); border: 1px solid rgba(127,119,221,0.2); color: rgba(255,255,255,0.84); border-top-left-radius: 3px; }
+.msg.user .bubble { background: rgba(29,158,117,0.09); border: 1px solid rgba(29,158,117,0.2); color: rgba(255,255,255,0.84); border-top-right-radius: 3px; }
 .bubble strong { color: #afa9ec; }
 .hl-t { color: #5dcaa5; font-weight: 700; }
 .hl-a { color: #fac775; font-weight: 700; }
 .hl-p { color: #afa9ec; font-weight: 700; }
+.hl-r { color: #f0997b; font-weight: 700; }
 .typing { display: flex; gap: 4px; align-items: center; padding: 2px 0; }
 .typing span { width: 6px; height: 6px; border-radius: 50%; background: #7f77dd; animation: bounce 1.2s ease-in-out infinite; }
 .typing span:nth-child(2) { animation-delay: 0.18s; }
@@ -48,13 +49,13 @@ body { background: #06060f; font-family: 'Syne', sans-serif; height: 100vh; disp
 @keyframes bounce { 0%,100%{transform:translateY(0);opacity:0.4} 50%{transform:translateY(-5px);opacity:1} }
 .suggestions { padding: 0 24px 14px; display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; }
 .sq-group { display: flex; flex-wrap: wrap; gap: 5px; }
-.sq-label { font-family: 'DM Mono', monospace; font-size: 8px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; margin-top: 5px; }
-.sq { font-family: 'DM Mono', monospace; font-size: 10px; padding: 6px 12px; border-radius: 7px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); cursor: pointer; transition: all 0.15s; text-align: left; }
+.sq-label { font-family: 'DM Mono', monospace; font-size: 8px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; margin-top: 5px; }
+.sq { font-family: 'DM Mono', monospace; font-size: 10px; padding: 6px 12px; border-radius: 7px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.52); cursor: pointer; transition: all 0.15s; text-align: left; }
 .sq:hover { background: rgba(127,119,221,0.12); border-color: #7f77dd; color: #afa9ec; }
 .input-area { background: #13131f; border-top: 1px solid #1e1e2e; padding: 14px 20px; display: flex; gap: 10px; align-items: flex-end; flex-shrink: 0; }
 textarea { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 11px; padding: 11px 15px; color: rgba(255,255,255,0.9); font-family: 'DM Mono', monospace; font-size: 12px; resize: none; min-height: 42px; max-height: 110px; outline: none; transition: border-color 0.15s; }
 textarea:focus { border-color: rgba(127,119,221,0.5); }
-textarea::placeholder { color: rgba(255,255,255,0.2); }
+textarea::placeholder { color: rgba(255,255,255,0.25); }
 .send-btn { width: 42px; height: 42px; border-radius: 11px; background: linear-gradient(135deg, #534ab7, #1d9e75); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 18px; flex-shrink: 0; transition: opacity 0.15s, transform 0.1s; }
 .send-btn:hover { opacity: 0.85; transform: scale(1.05); }
 </style>
@@ -62,54 +63,58 @@ textarea::placeholder { color: rgba(255,255,255,0.2); }
 <body>
 <div class="container">
   <div class="header">
-    <div class="avatar">A</div>
+    <div class="avatar">IA</div>
     <div class="hinfo">
-      <div class="hname">Assistant DDM · TDM — Schmidt Groupe</div>
-      <div class="hsub">Référentiel métier · Tickets LUDO · Complémentaire à LAIA</div>
+      <div class="hname">Assistant IA TDM — Schmidt Groupe</div>
+      <div class="hsub">Données techniques · CT/AS400 · Tickets LUDO · Contrôles de cohérence</div>
     </div>
-    <div class="status"><div class="sdot"></div>En ligne</div>
+    <div class="status"><div class="sdot"></div>Prototype</div>
   </div>
   <div class="ctx-bar">
-    <span class="ct cp">Configurateur technique (CT)</span>
+    <span class="ct cp">Configurateur technique CT</span>
     <span class="ct cg">Tickets LUDO</span>
     <span class="ct ca">Nomenclatures · AS400</span>
     <span class="ct cb">TDM · CDM · PDM · DE</span>
-    <span class="ct cc">Règles · FMC</span>
+    <span class="ct cc">Règles · FMC · Contrôles</span>
   </div>
   <div class="laia-bar">
-    <strong>Complémentaire à LAIA</strong> — LAIA = documentation & manuels. Cet assistant = <strong>données structurées , nommencaltures , causes recurrentes, patterns de productions </strong>.
+    <strong>Positionnement</strong> — Ce prototype ne remplace pas le CT : il montre comment l'IA peut aider à <strong>capitaliser les règles, contrôler la cohérence, préparer les données et assister les experts métier</strong>.
   </div>
   <div class="messages" id="messages">
     <div class="msg bot">
-      <div class="mav">&#129302;</div>
+      <div class="mav">🤖</div>
       <div class="bubble">
-        Bonjour ! Je suis l'assistant d'analyse DDM/TDM, construit à partir du <strong>référentiel métier</strong> élaboré avec les experts TDM.<br><br>
-        Je couvre les causes des tickets LUDO, les composants impliqués, les impacts terrain, les actions correctives — et la vision Data/IA pour aller plus loin.<br><br>
-        Posez-moi une question ou choisissez dans la liste ci-dessous.
+        Bonjour ! Je suis un prototype d'assistant IA TDM, pensé comme une couche d'aide autour du <strong>Configurateur Technique / AS400</strong>.<br><br>
+        Mon objectif n'est pas de remplacer directement le CT, mais de montrer comment l'IA peut aider à exploiter les données métier : analyser les tickets LUDO, capitaliser les règles, proposer des contrôles de cohérence et préparer des données avant validation humaine.<br><br>
+        Choisissez une question ci-dessous ou posez librement une question.
       </div>
     </div>
   </div>
   <div class="suggestions" id="suggestions">
     <div class="sq-label">COMPRÉHENSION MÉTIER</div>
     <div class="sq-group">
-      <button class="sq" onclick="ask(this)">C'est quoi le rôle du CT dans la fabrication d'un meuble ?</button>
+      <button class="sq" onclick="ask(this)">Quel est le rôle du CT dans la fabrication d'un meuble ?</button>
       <button class="sq" onclick="ask(this)">Quelle est la différence entre LAIA et cet assistant ?</button>
+      <button class="sq" onclick="ask(this)">C'est quoi une nomenclature industrielle ?</button>
+    </div>
+    <div class="sq-label">CAS D'USAGE IA AUTOUR DU CT</div>
+    <div class="sq-group">
+      <button class="sq" onclick="ask(this)">Pourquoi l'IA ne doit pas remplacer directement le CT ?</button>
+      <button class="sq" onclick="ask(this)">Comment l'IA peut aider à préparer une nomenclature ?</button>
+      <button class="sq" onclick="ask(this)">Comment l'IA peut faire des contrôles de cohérence ?</button>
+      <button class="sq" onclick="ask(this)">Comment l'IA peut aider sur les coloris nouveautés ?</button>
     </div>
     <div class="sq-label">ANALYSE DES TICKETS</div>
     <div class="sq-group">
-      <button class="sq" onclick="ask(this)">Quelle est la cause principale des tickets LUDO ?</button>
+      <button class="sq" onclick="ask(this)">Comment les tickets LUDO peuvent améliorer les règles métier ?</button>
       <button class="sq" onclick="ask(this)">Quels composants génèrent le plus d'anomalies ?</button>
-      <button class="sq" onclick="ask(this)">Qu'est-ce que le FMC et pourquoi est-il problématique ?</button>
+      <button class="sq" onclick="ask(this)">Qu'est-ce que le FMC et pourquoi est-il sensible ?</button>
     </div>
-    <div class="sq-label">VISION IA</div>
+    <div class="sq-label">VISION IA & GOUVERNANCE</div>
     <div class="sq-group">
-      <button class="sq" onclick="ask(this)">Pourquoi l'IA ne peut pas encore générer des nomenclatures ?</button>
-      <button class="sq" onclick="ask(this)">Quelle est la différence entre automatisation et IA ?</button>
-    </div>
-    <div class="sq-label">GOUVERNANCE</div>
-    <div class="sq-group">
+      <button class="sq" onclick="ask(this)">Quelle est la différence entre automatisation, IA et IA générative ?</button>
       <button class="sq" onclick="ask(this)">Qu'est-ce que la gouvernance des données IA ?</button>
-      <button class="sq" onclick="ask(this)">Comment structurer les règles de fabrication pour l'IA ?</button>
+      <button class="sq" onclick="ask(this)">Comment sécuriser l'usage de l'IA avec les données Schmidt ?</button>
     </div>
     <div class="sq-label">PROJECTION</div>
     <div class="sq-group">
@@ -118,26 +123,31 @@ textarea::placeholder { color: rgba(255,255,255,0.2); }
   </div>
   <div class="input-area">
     <textarea id="input" placeholder="Ou posez librement une question…" rows="1" onkeydown="handleKey(event)"></textarea>
-    <button class="send-btn" onclick="send()" aria-label="Envoyer">&#10148;</button>
+    <button class="send-btn" onclick="send()" aria-label="Envoyer">➤</button>
   </div>
 </div>
 <script>
 var R=[
-{k:['rôle du ct','role du ct','ct dans la fabrication','configurateur','as400','chaîne de fabrication','chaine de fabrication','meuble','comment fonctionne'],a:'Le <strong>Configurateur Technique (CT)</strong> est le cerveau de la fabrication chez Schmidt Groupe.<br><br>Son rôle : <span class="hl-t">traduire une commande client en données techniques exploitables par la production.</span><br><br>La chaîne complète :<br><br><span class="hl-p">① Commande client</span> — modèle, coloris, dimensions, options<br>↓<br><span class="hl-p">② CT / AS400</span> — interprète les choix via des règles, formules et tables<br>↓<br><span class="hl-p">③ Nomenclature générée</span> — liste de tous les composants nécessaires<br>↓<br><span class="hl-p">④ FMC créés</span> — fichiers d\'usinage pour chaque machine<br>↓<br><span class="hl-p">⑤ Fabrication</span> — les machines usinent, les ateliers assemblent<br><br>➜ La moindre erreur de configuration dans le CT se propage à toutes les étapes en aval. C\'est pourquoi la qualité des données dans le CT est un enjeu stratégique majeur.'},
-{k:['laia','différence entre laia','difference entre laia','complémentaire','complementaire','cet assistant','vs laia'],a:'<strong>LAIA et cet assistant sont deux couches complémentaires</strong> — pas concurrentes.<br><br><span class="hl-a">LAIA (Teams)</span><br>• Répond sur la documentation textuelle<br>• Manuels, procédures, savoir-faire documenté<br>• "Où est le fichier X ?" / "Que signifie VP ?"<br><br><span class="hl-t">Cet assistant (données structurées)</span><br>• Analyse les tickets LUDO terrain<br>• Identifie les causes récurrentes et les patterns<br>• Raisonne sur composants, impacts et actions correctives<br>• Basé sur le référentiel métier construit avec les experts TDM<br><br>➜ <span class="hl-t">LAIA couvre le savoir documenté. Cet assistant couvre le savoir extrait des données terrain.</span><br>Ensemble, ils couvrent toute la chaîne de connaissance Schmidt Groupe.'},
-{k:['cause principale','cause la plus','première cause','causes des tickets','cause dominante','cause majeure'],a:'D\'après l\'analyse du corpus tickets LUDO, la <strong>cause dominante</strong> est :<br><br><span class="hl-t">① cause_TDM_config_manquante</span><br>Configuration TDM incomplète : formule, nomenclature, table ou règle manquante dans le CT. C\'est de loin la cause la plus fréquente dans le corpus analysé.<br><br><span class="hl-a">② cause_SC_saisie_erronee</span><br>Erreur de saisie commande côté Service Client.<br><br><span class="hl-a">③ cause_TDM_FMC_manuel_NOK</span><br>FMC erroné nécessitant une correction manuelle — pièces traitées en mode "Voir Plan".<br><br>➜ Ces 3 causes concentrent la majorité des tickets. La cause TDM config est structurellement la plus impactante car elle touche directement la génération des données de fabrication.'},
-{k:['composant','pièce','piece','façade','facade','panneau','côté plaqué','cote plaque','charnière','charniere','anomalies','plus touché','plus touche'],a:'D\'après le référentiel métier, les <strong>composants les plus impliqués</strong> dans les anomalies LUDO :<br><br><span class="hl-t">① Côté plaqué (CP / CO)</span><br>Pièce centrale du caisson — très sensible aux erreurs de configuration TDM.<br><br><span class="hl-t">② Façade (POSM, PIF, POF, POH…)</span><br>Le composant le plus complexe : charnières, embases, coloris, ferrage gauche/droite.<br><br><span class="hl-a">③ Panneau, Fond, Dos</span><br>Composants caisson fréquemment impliqués dans des problèmes de dimensions, coloris et programmes chant.<br><br>➜ Les composants de type caisson concentrent la majorité des anomalies terrain. Ce sont les premières cibles pour une détection IA préventive.'},
-{k:['fmc','voir plan','fichier usinage','format fichier','problématique','problematique'],a:'Le <strong>FMC (Format de Fichier d\'Usinage)</strong> est le fichier stocké dans le MES qui dit à chaque machine comment usiner une pièce.<br><br><span class="hl-t">Pourquoi est-il problématique ?</span><br><br><span class="hl-a">① Très fréquent dans le corpus</span><br>Le FMC est l\'un des termes les plus cités dans les tickets LUDO — il est au cœur de nombreuses anomalies.<br><br><span class="hl-a">② Correction manuelle coûteuse</span><br>Quand le FMC est erroné, les équipes TDM + PDM interviennent manuellement — notamment l\'équipe "Voir Plan" pour les pièces spéciales.<br><br><span class="hl-a">③ Double impact</span><br>Erreur FMC non détectée = pièce usinée incorrectement = recommande obligatoire = coût direct.<br><br>➜ La détection préventive des anomalies FMC avant usinage est l\'un des cas d\'usage IA les plus concrets et les plus rentables.'},
-{k:['nomenclature automatique','générer nomenclature','generer nomenclature','génération auto','generation auto','pourquoi pas encore','pas encore possible','horizon'],a:'C\'est <strong>l\'objectif stratégique final</strong> — et l\'analyse des tickets montre exactement pourquoi les fondations doivent d\'abord être posées.<br><br><span class="hl-t">① Les règles de fabrication ne sont pas encore toutes formalisées</span><br>La cause principale des tickets = config TDM manquante. Ces règles existent dans les têtes des experts — mais pas encore dans un référentiel structuré exploitable par l\'IA.<br><br><span class="hl-t">② Les données AS400 doivent être structurées</span><br>Le CT est au cœur de la fabrication mais ses données sont complexes et peu documentées. L\'IA a besoin de données propres et fiables en entrée.<br><br><span class="hl-a">③ Le référentiel métier est en cours de construction</span><br>122 codes problèmes, 14 causes, 55+ composants — construits et validés avec l\'expert métier TDM. C\'est la fondation indispensable.<br><br>➜ <strong>Garbage in = garbage out.</strong> On ne peut pas demander à l\'IA de générer des nomenclatures fiables si les règles métier ne sont pas d\'abord formalisées.'},
-{k:['automatisation','différence automatisation','difference automatisation','ia générative','generative','chatgpt','c\'est quoi l\'ia'],a:'C\'est une confusion très fréquente — voici la distinction claire :<br><br><span class="hl-t">Automatisation</span><br>Exécuter une tâche répétitive selon des règles fixes et prédéfinies.<br>Ex : remplir automatiquement un champ AS400 selon une condition.<br>→ Rapide, prévisible, limité à ce qui est déjà défini.<br><br><span class="hl-a">IA classique (Machine Learning)</span><br>Apprendre des patterns dans les données pour faire des prédictions.<br>Ex : détecter automatiquement la cause probable d\'un ticket LUDO.<br>→ Nécessite des données structurées et un référentiel validé.<br><br><span class="hl-p">IA générative (type ChatGPT)</span><br>Générer du contenu nouveau : texte, code, nomenclatures.<br>Ex : proposer une nomenclature complète à partir d\'une description produit.<br>→ Puissant mais nécessite un contexte métier très précis et des données fiables.<br><br>➜ Pour Schmidt Groupe, <span class="hl-t">l\'objectif final est l\'IA générative sur les nomenclatures</span> — mais on passe obligatoirement par les étapes 1 et 2 d\'abord.'},
-{k:['gouvernance','gouvernance des données','poc isolé','poc isole','silos','vision commune','partage'],a:'La <strong>gouvernance des données IA</strong> c\'est le cadre qui permet à l\'IA de créer de la vraie valeur — pas juste des POC isolés.<br><br><span class="hl-t">① Centraliser et partager les initiatives IA</span><br>Aujourd\'hui des POC existent dans des cercles restreints. Une gouvernance évite les doublons et capitalise sur ce qui fonctionne.<br><br><span class="hl-t">② Définir des standards de qualité de données</span><br>Qui produit quoi, dans quel format, avec quelle fiabilité — pour que les modèles IA exploitent les données de façon cohérente.<br><br><span class="hl-a">③ Aligner les équipes sur une vision commune</span><br>Ce que l\'IA peut faire, ce qu\'elle ne peut pas faire, les délais réalistes — pour éviter les attentes irréalistes.<br><br>➜ Sans gouvernance, la majorité des projets IA restent au stade POC et n\'arrivent jamais en production. C\'est le risque principal à éviter.'},
-{k:['structurer les règles','structurer les regles','formaliser','règles de fabrication','regles de fabrication','règles implicites','regles implicites','expert métier'],a:'C\'est le <strong>chantier prioritaire n°1</strong> — et c\'est exactement ce sur quoi je travaille avec l\'expert métier TDM.<br><br>Le problème aujourd\'hui :<br>• Les règles de fabrication sont dans les têtes des experts<br>• Éparpillées entre Excel, Teams, l\'AS400 et l\'expérience terrain<br>• Jamais formalisées dans un référentiel exploitable par l\'IA<br><br><span class="hl-t">L\'approche concrète :</span><br><br><span class="hl-t">① Entretiens structurés</span> avec les experts TDM pour extraire les règles implicites<br><span class="hl-t">② Analyse des tickets</span> pour détecter les patterns récurrents non documentés<br><span class="hl-a">③ Construction du référentiel</span> : Problème → Cause → Règle → Contrainte → Action<br><span class="hl-a">④ Validation expert</span> avant d\'alimenter les modèles IA<br><br>➜ Ce socle est indispensable. Sans lui, l\'IA génèrerait des nomenclatures non conformes aux contraintes de fabrication.'},
-{k:['prochaines étapes','prochaines etapes','suite','roadmap','plan','court terme','moyen terme'],a:'Les <strong>prochaines étapes concrètes</strong> du projet Data/IA DDM/TDM :<br><br><span class="hl-t">Court terme (0–3 mois)</span><br>• Finaliser et valider le référentiel métier avec les experts TDM<br>• Documenter les règles de fabrication implicites<br>• Structurer les données AS400 pour les rendre exploitables<br><br><span class="hl-a">Moyen terme (3–6 mois)</span><br>• Industrialiser l\'analyse des tickets LUDO<br>• Détecter automatiquement les causes récurrentes<br>• Produire des dashboards de suivi des anomalies<br>• Structurer la gouvernance des POC IA<br><br><span class="hl-p">Long terme (6–12 mois)</span><br>• Détection préventive des anomalies FMC avant usinage<br>• Vers la génération semi-automatique de nomenclatures<br>• Configurateur technique enrichi par l\'IA<br><br>➜ Chaque étape est un prérequis de la suivante. <span class="hl-t">On ne peut pas brûler les étapes — mais on peut les accélérer avec les bonnes fondations.</span>'}
+{k:['rôle du ct','role du ct','ct dans la fabrication','configurateur','as400','chaîne de fabrication','chaine de fabrication','meuble','comment fonctionne'],a:'Le <strong>Configurateur Technique CT / AS400</strong> joue un rôle central dans la fabrication.<br><br>Il transforme une commande commerciale en données techniques exploitables par les systèmes industriels : composants, dimensions, coloris, règles de compatibilité, contraintes de fabrication et nomenclatures.<br><br><span class="hl-p">Commande client</span> → <span class="hl-p">interprétation des règles CT</span> → <span class="hl-p">nomenclature</span> → <span class="hl-p">données d\'usinage / FMC</span> → <span class="hl-p">fabrication</span><br><br>La difficulté est que beaucoup de règles sont complexes, parfois implicites, et dispersées entre AS400, Excel, la documentation et l\'expertise métier. C\'est précisément là que l\'IA peut aider : non pas en remplaçant le CT, mais en aidant à comprendre, contrôler et capitaliser ces règles.'},
+{k:['laia','différence entre laia','difference entre laia','complémentaire','complementaire','cet assistant','vs laia'],a:'<strong>LAIA et cet assistant sont complémentaires.</strong><br><br><span class="hl-a">LAIA</span> sert principalement à interroger de la documentation, des manuels et des connaissances écrites.<br><br><span class="hl-t">Cet assistant IA TDM</span> illustre une autre couche : il exploite des données métier plus structurées ou semi-structurées, comme les tickets LUDO, les composants, les causes, les règles, les nomenclatures et les contrôles de cohérence.<br><br>En résumé : <span class="hl-a">LAIA aide à retrouver le savoir documenté</span>, tandis que <span class="hl-t">cet assistant aide à exploiter le savoir métier issu des données terrain et techniques</span>.'},
+{k:['nomenclature industrielle','c est quoi une nomenclature','c\'est quoi une nomenclature','nomenclature'],a:'Une <strong>nomenclature industrielle</strong>, c\'est la liste structurée de tous les éléments nécessaires pour fabriquer un produit.<br><br>Pour un meuble, cela peut inclure les panneaux, façades, chants, ferrures, charnières, poignées, visserie, coloris, dimensions et autres composants techniques.<br><br>Elle doit être cohérente avec les règles de fabrication : bon composant, bonne dimension, bon coloris, bonne compatibilité avec la gamme et bon process industriel.<br><br>Pour cette raison, une nomenclature ne doit pas être générée librement sans contrôle : elle doit être vérifiée par le CT, par des règles métier et par une validation humaine lorsque le risque est élevé.'},
+{k:['remplacer directement le ct','remplacer le ct','pourquoi l ia ne doit pas','ia remplacer configurateur','ia remplacer ct'],a:'L\'IA ne doit pas remplacer directement le CT, car le CT porte des règles industrielles critiques : compatibilités produits, dimensions, composants, coloris, nomenclatures et contraintes de fabrication.<br><br>Une erreur générée automatiquement pourrait produire une mauvaise nomenclature, un mauvais fichier d\'usinage ou une pièce non conforme.<br><br>Le bon positionnement est donc : <span class="hl-t">l\'IA comme couche d\'assistance, de contrôle et d\'accélération autour du CT</span>.<br><br>Elle peut aider à expliquer les règles, détecter des incohérences, proposer des pré-analyses et préparer des données, mais la décision finale doit rester contrôlée par les règles métier, le CT et les experts.'},
+{k:['préparer une nomenclature','preparer une nomenclature','générer nomenclature','generer nomenclature','nomenclature automatique','proposition de nomenclature'],a:'L\'IA peut aider à <strong>préparer une proposition de nomenclature</strong>, mais pas à l\'injecter automatiquement sans contrôle.<br><br>Concrètement, elle peut :<br>• retrouver des cas similaires déjà traités ;<br>• proposer les composants probables à partir d\'un modèle ou d\'une configuration ;<br>• signaler les informations manquantes ;<br>• comparer la proposition avec des règles connues ;<br>• alerter en cas d\'incohérence.<br><br>La valeur de l\'IA est donc dans la préparation et le contrôle. La validation finale doit passer par les règles CT, les contrôles de cohérence et l\'expertise métier.'},
+{k:['contrôles de cohérence','controles de coherence','contrôle de cohérence','controle de coherence','incohérence','incoherence','cohérence'],a:'L\'IA peut aider à faire des <strong>contrôles de cohérence</strong> en comparant plusieurs sources : règles métier, nomenclatures existantes, tickets LUDO, composants, coloris, gammes et historiques d\'anomalies.<br><br>Elle peut détecter des situations suspectes :<br>• composant absent ou inhabituel ;<br>• coloris non cohérent avec une gamme ;<br>• contradiction entre une règle et une nomenclature ;<br>• cas similaire déjà rencontré dans un ticket LUDO ;<br>• anomalie potentielle avant fabrication.<br><br>L\'objectif n\'est pas de décider seule, mais d\'alerter plus tôt pour éviter qu\'une erreur ne parte vers la production.'},
+{k:['coloris nouveautés','coloris nouveautes','duplication coloris','nouveau coloris','injection coloris'],a:'Sur les <strong>coloris nouveautés</strong>, l\'IA peut aider à accélérer un travail aujourd\'hui très manuel.<br><br>Elle peut analyser les règles existantes, identifier les gammes ou familles similaires, proposer des duplications de coloris cohérentes, détecter les oublis et préparer un fichier de contrôle avant injection dans AS400.<br><br>Mais l\'injection directe dans le CT doit rester sécurisée : validation métier, contrôles automatiques, traçabilité des modifications et possibilité de retour arrière.<br><br>Le cas d\'usage réaliste est donc : <span class="hl-t">préparer, contrôler, puis injecter sous validation</span>.'},
+{k:['tickets ludo améliorer','tickets ludo peuvent améliorer','tickets ludo','cause principale','causes des tickets','patterns'],a:'Les tickets LUDO sont très utiles parce qu\'ils représentent les anomalies réellement rencontrées sur le terrain.<br><br>Ils permettent d\'identifier les problèmes récurrents, les composants sensibles, les causes probables et les corrections appliquées.<br><br>En les structurant, on peut passer d\'une logique corrective à une logique préventive : comprendre pourquoi une anomalie revient, transformer cette connaissance en règle métier, puis créer des contrôles pour éviter qu\'elle se reproduise.<br><br>Autrement dit : <span class="hl-t">les tickets LUDO peuvent alimenter progressivement le référentiel de règles et les futurs contrôles IA autour du CT</span>.'},
+{k:['composant','pièce','piece','façade','facade','panneau','côté plaqué','cote plaque','charnière','charniere','anomalies','plus touché','plus touche'],a:'Les composants les plus sensibles sont souvent ceux qui concentrent beaucoup de règles : dimensions, coloris, perçages, ferrages, chants, compatibilités et process de fabrication.<br><br>Dans les tickets LUDO, les familles comme les façades, panneaux, côtés plaqués, fonds/dos et éléments liés aux ferrures peuvent générer des anomalies car elles dépendent de nombreuses règles croisées.<br><br>L\'intérêt de l\'IA est de repérer les composants qui reviennent souvent dans les anomalies, puis d\'aider les experts à prioriser les contrôles ou les règles à formaliser.'},
+{k:['fmc','voir plan','fichier usinage','format fichier','sensible','problématique','problematique'],a:'Le <strong>FMC</strong> est lié aux données d\'usinage utilisées par la fabrication. C\'est un point sensible, car une erreur dans ces données peut se traduire directement par une pièce mal usinée ou une correction manuelle.<br><br>Quand une anomalie FMC apparaît, elle peut nécessiter une analyse TDM/PDM, une correction manuelle, voire une nouvelle fabrication.<br><br>L\'IA peut apporter de la valeur en détectant plus tôt les situations à risque : incohérence de dimensions, règle manquante, cas déjà rencontré, ou combinaison produit inhabituelle.'},
+{k:['automatisation','différence automatisation','difference automatisation','ia générative','ia generative','chatgpt','c\'est quoi l\'ia','c est quoi l ia'],a:'Voici la différence simplement :<br><br><span class="hl-t">Automatisation</span> : exécuter une tâche avec des règles fixes. Exemple : remplir un champ ou générer un fichier selon une condition connue.<br><br><span class="hl-a">IA classique</span> : apprendre à partir de données pour détecter des patterns, classer, prédire ou recommander. Exemple : détecter la cause probable d\'un ticket LUDO.<br><br><span class="hl-p">IA générative</span> : produire du contenu nouveau : texte, code, synthèse, explication ou proposition de nomenclature.<br><br>Dans le contexte TDM, l\'objectif n\'est pas seulement de générer du texte : c\'est de combiner automatisation, IA classique et IA générative pour structurer les règles, contrôler les données et assister la décision métier.'},
+{k:['gouvernance','gouvernance des données','poc isolé','poc isole','silos','vision commune','partage'],a:'La <strong>gouvernance des données IA</strong>, c\'est le cadre qui permet d\'utiliser l\'IA de façon fiable, sécurisée et industrialisable.<br><br>Elle répond à des questions concrètes : quelles données peut-on utiliser ? Qui les valide ? Où sont-elles stockées ? Qui a le droit d\'y accéder ? Comment suivre les versions ? Comment éviter les doublons entre POC ? Comment garantir la qualité des données ?<br><br>Sans gouvernance, l\'IA peut rester au stade démonstration. Avec une gouvernance claire, elle peut devenir un vrai levier industriel.'},
+{k:['sécuriser','securiser','sécurité','securite','rgpd','ia responsable','données schmidt','donnees schmidt','confidentialité','confidentialite'],a:'Sécuriser l\'usage de l\'IA avec les données Schmidt signifie définir un cadre clair avant de manipuler des données métier ou techniques sensibles.<br><br>Les points clés sont :<br>• ne pas envoyer de données confidentielles dans des outils externes non validés ;<br>• distinguer données publiques, internes, sensibles et personnelles ;<br>• respecter la conformité RGPD lorsqu\'il y a des données personnelles ;<br>• garder une validation humaine sur les décisions critiques ;<br>• tracer les usages, les sources et les modifications.<br><br>C\'est ça l\'IA responsable : utiliser l\'IA pour créer de la valeur, mais dans un cadre maîtrisé, sécurisé et conforme aux règles de l\'entreprise.'},
+{k:['structurer les règles','structurer les regles','formaliser','règles de fabrication','regles de fabrication','règles implicites','regles implicites','expert métier'],a:'Structurer les règles de fabrication, c\'est transformer un savoir souvent implicite en un référentiel exploitable.<br><br>Exemple de structure :<br><span class="hl-p">Problème</span> → <span class="hl-p">Cause</span> → <span class="hl-p">Règle concernée</span> → <span class="hl-p">Contrainte de fabrication</span> → <span class="hl-p">Action corrective</span> → <span class="hl-p">Contrôle à créer</span><br><br>Cette structuration est indispensable pour entraîner ou alimenter une IA. Sans règles claires, l\'IA risque de proposer des réponses incohérentes ou non conformes à la fabrication.'},
+{k:['prochaines étapes','prochaines etapes','suite','roadmap','plan','court terme','moyen terme'],a:'Les prochaines étapes concrètes peuvent être présentées en trois niveaux :<br><br><span class="hl-t">Court terme</span><br>• finaliser le référentiel métier avec les experts ;<br>• structurer les tickets LUDO par problème, cause, composant, impact et action ;<br>• identifier les règles de fabrication implicites à formaliser.<br><br><span class="hl-a">Moyen terme</span><br>• construire des contrôles de cohérence sur les cas récurrents ;<br>• industrialiser l\'analyse des tickets ;<br>• préparer des cas d\'usage concrets comme les coloris nouveautés ou les anomalies FMC.<br><br><span class="hl-p">Long terme</span><br>• aller vers une aide à la génération de nomenclatures ;<br>• connecter l\'assistant aux données validées ;<br>• créer une couche IA autour du CT pour assister, contrôler et expliquer.<br><br>Le message clé : <span class="hl-t">on ne remplace pas le CT du jour au lendemain ; on construit progressivement une IA fiable autour de lui</span>.'}
 ];
-var DEF='Je n\'ai pas de réponse précise sur ce sujet dans mon référentiel actuel.<br><br>Je couvre : <strong>le rôle du CT/AS400, les causes des tickets LUDO, les composants, le FMC, la vision IA, la gouvernance et les prochaines étapes.</strong><br><br>➜ Choisissez une question dans la liste ou reformulez votre demande.';
+var DEF='Je n\'ai pas encore de réponse précise sur ce sujet dans mon référentiel actuel.<br><br>Ce prototype couvre surtout : <strong>le CT/AS400, les nomenclatures, les contrôles de cohérence, les tickets LUDO, les composants, le FMC, la gouvernance et la vision IA autour des données TDM.</strong><br><br>➜ Vous pouvez choisir une question dans la liste ou reformuler votre demande.';
 function scroll(){var m=document.getElementById('messages');m.scrollTop=m.scrollHeight;}
-function addMsg(role,html){var d=document.createElement('div');d.className='msg '+(role==='user'?'user':'bot');d.innerHTML='<div class="mav">'+(role==='user'?'&#128100;':'&#129302;')+'</div><div class="bubble">'+html+'</div>';document.getElementById('messages').appendChild(d);scroll();}
-function showTyping(){var d=document.createElement('div');d.className='msg bot';d.id='typing';d.innerHTML='<div class="mav">&#129302;</div><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>';document.getElementById('messages').appendChild(d);scroll();}
+function addMsg(role,html){var d=document.createElement('div');d.className='msg '+(role==='user'?'user':'bot');d.innerHTML='<div class="mav">'+(role==='user'?'👤':'🤖')+'</div><div class="bubble">'+html+'</div>';document.getElementById('messages').appendChild(d);scroll();}
+function showTyping(){var d=document.createElement('div');d.className='msg bot';d.id='typing';d.innerHTML='<div class="mav">🤖</div><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>';document.getElementById('messages').appendChild(d);scroll();}
 function removeTyping(){var t=document.getElementById('typing');if(t)t.remove();}
 function findResponse(text){var low=text.toLowerCase();for(var i=0;i<R.length;i++){if(R[i].k.some(function(k){return low.indexOf(k)>=0;}))return R[i].a;}return DEF;}
 function send(){var inp=document.getElementById('input');var text=inp.value.trim();if(!text)return;document.getElementById('suggestions').style.display='none';inp.value='';inp.style.height='auto';addMsg('user',text.replace(/\n/g,'<br>'));showTyping();setTimeout(function(){removeTyping();addMsg('bot',findResponse(text));},900+Math.random()*600);}
